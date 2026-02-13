@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureCrypto Investments - User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f4f8;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+        }
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: #0056d2 !important;
+            font-size: 1.25rem;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #555 !important;
+        }
+        .nav-link:hover {
+            color: #0056d2 !important;
+        }
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            background-color: #ffffff;
+        }
+        .card-title {
+            font-weight: 600;
+            color: #222;
+        }
+        .chart-placeholder {
+            height: 300px;
+            background: #e9ecef;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-style: italic;
+            color: #6c757d;
+            border-radius: 8px;
+        }
+        .news-item {
+            border-bottom: 1px solid #eee;
+            padding: 12px 0;
+            font-size: 0.95rem;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            text-align: center;
+            color: #777;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            background-color: #0056d2;
+            border-color: #0056d2;
+            font-weight: 500;
+        }
+        .btn-primary:hover {
+            background-color: #0044a8;
+            border-color: #0044a8;
+        }
+        .table th {
+            font-weight: 600;
+            color: #444;
+            background-color: #f8f9fa;
+        }
+        .table td {
+            vertical-align: middle;
+        }
+        /* Fake reviews bubble */
+        .reviews-bubble {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 300px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            padding: 15px;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .reviews-header {
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: #0056d2;
+        }
+        .review-message {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 8px;
+            padding: 8px;
+            background-color: #f8f9fa;
+            border-radius: 6px;
+        }
+        .review-message:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SecureCrypto Investments</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Transactions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Market</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-1"></i> Cheruiyot
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Portfolio Overview</h5>
+                        <p class="card-text">Total Balance: <strong id="total-balance">$58,000 USD</strong> <span class="text-success">(+3.2% today)</span></p>
+                        <p class="card-text">Investments earn daily profits after a 24-hour holding period. Deposit funds to start earning.</p>
+                        <div class="chart-placeholder">Interactive Portfolio Chart (Integrate with Chart.js or ApexCharts for real-time data)</div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Your Investments</h5>
+                        <table class="table table-hover" id="investments-table">
+                            <thead>
+                                <tr>
+                                    <th>Asset</th>
+                                    <th>Amount</th>
+                                    <th>Value (USD)</th>
+                                    <th>24h Change</th>
+                                    <th>Profit Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Supported Cryptocurrencies</h5>
+                        <p>Invest in any of the following cryptocurrencies. Deposit funds and earn profits after a 24-hour period.</p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Bitcoin (BTC)</li>
+                            <li class="list-group-item">Ethereum (ETH)</li>
+                            <li class="list-group-item">Solana (SOL)</li>
+                            <li class="list-group-item">Cardano (ADA)</li>
+                            <li class="list-group-item">Ripple (XRP)</li>
+                            <li class="list-group-item">Binance Coin (BNB)</li>
+                            <li class="list-group-item">Polkadot (DOT)</li>
+                            <li class="list-group-item">Chainlink (LINK)</li>
+                            <li class="list-group-item">Litecoin (LTC)</li>
+                            <li class="list-group-item">Stellar (XLM)</li>
+                            <li class="list-group-item">Dogecoin (DOGE)</li>
+                            <li class="list-group-item">Shiba Inu (SHIB)</li>
+                            <li class="list-group-item">Avalanche (AVAX)</li>
+                            <li class="list-group-item">Terra (LUNA)</li>
+                            <li class="list-group-item">Uniswap (UNI)</li>
+                            <!-- Expand as needed -->
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Transaction History</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Deposited $10,000 USD into BTC on Feb 10, 2026 (Profit eligible after 24h)</li>
+                            <li class="list-group-item">Withdrew $5,000 USD from ETH on Feb 8, 2026</li>
+                            <li class="list-group-item">Deposited $5,000 USD on Feb 5, 2026</li>
+                            <!-- Add more -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Quick Actions</h5>
+                        <form id="deposit-form" class="d-grid gap-2">
+                            <div class="mb-3">
+                                <label for="deposit-amount" class="form-label">Deposit Amount (USD)</label>
+                                <input type="number" class="form-control" id="deposit-amount" placeholder="Enter amount" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="crypto-select" class="form-label">Select Crypto</label>
+                                <select class="form-select" id="crypto-select" required>
+                                    <option value="">Choose...</option>
+                                    <option value="bitcoin">Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                    <!-- Add more options matching supported cryptos -->
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Deposit Funds</button>
+                            <button class="btn btn-secondary mt-2" onclick="alert('Withdraw to your linked account')">Withdraw Funds</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Market News</h5>
+                        <div class="news-item">
+                            <strong>Bitcoin Hits New High</strong><br>
+                            BTC surges past $50,000 amid institutional adoption.
+                        </div>
+                        <div class="news-item">
+                            <strong>Ethereum Upgrade Incoming</strong><br>
+                            The next ETH protocol update promises lower fees.
+                        </div>
+                        <div class="news-item">
+                            <strong>Regulatory Updates</strong><br>
+                            New EU rules on crypto assets take effect soon.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Investment Tips</h5>
+                        <p>Deposit funds into supported cryptos and earn profits automatically after 24 hours. Enable 2FA for security.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fake Reviews Bubble -->
+    <div class="reviews-bubble">
+        <div class="reviews-header">Recent Withdrawals</div>
+        <div class="review-message">John D. withdrew $2,500 successfully! 🎉</div>
+        <div class="review-message">Sarah L. cashed out $1,200 in profits. Fast and secure!</div>
+        <div class="review-message">Mike T. received $3,000 withdrawal in minutes. Great service!</div>
+        <div class="review-message">Emma W. withdrew $800 - Easy process!</div>
+        <!-- Add more fake messages as needed -->
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SecureCrypto Investments. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script>
+        // Real-time crypto prices using CoinGecko API
+        const cryptos = ['bitcoin', 'ethereum', 'solana']; // Add more IDs matching your investments
+        const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=' + cryptos.join(',') + '&vs_currencies=usd&include_24hr_change=true';
+
+        async function fetchPrices() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                updateTable(data);
+                updateTotalBalance(data); // Placeholder for total balance update
+            } catch (error) {
+                console.error('Error fetching prices:', error);
+            }
+        }
+
+        function updateTable(data) {
+            const tbody = document.querySelector('#investments-table tbody');
+            tbody.innerHTML = ''; // Clear existing rows
+            cryptos.forEach(crypto => {
+                if (data[crypto]) {
+                    const price = data[crypto].usd;
+                    const change = data[crypto].usd_24h_change.toFixed(2);
+                    const changeClass = change > 0 ? 'text-success' : 'text-danger';
+                    const row = `
+                        <tr>
+                            <td>${crypto.charAt(0).toUpperCase() + crypto.slice(1)} (${crypto.toUpperCase().slice(0,3)})</td>
+                            <td>0.5</td> <!-- Placeholder amount; make dynamic in production -->
+                            <td>$${price.toLocaleString()}</td>
+                            <td class="${changeClass}">${change}%</td>
+                            <td>Earning after 24h hold</td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                }
+            });
+        }
+
+        function updateTotalBalance(data) {
+            // Placeholder logic: Sum up values; in production, use real portfolio data
+            let total = 0;
+            cryptos.forEach(crypto => {
+                if (data[crypto]) total += data[crypto].usd * 0.5; // Using placeholder amount
+            });
+            document.getElementById('total-balance').textContent = `$${total.toLocaleString()} USD`;
+        }
+
+        // Fetch prices on load and every 60 seconds
+        fetchPrices();
+        setInterval(fetchPrices, 60000);
+
+        // Backend deposit integration (frontend part)
+        const depositForm = document.getElementById('deposit-form');
+        depositForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const amount = document.getElementById('deposit-amount').value;
+            const crypto = document.getElementById('crypto-select').value;
+            if (!amount || !crypto) return alert('Please fill in all fields.');
+
+            try {
+                const response = await fetch('/api/deposit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount: parseFloat(amount), crypto })
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(`Deposit of $${amount} into ${crypto.toUpperCase()} successful! Profits start after 24 hours.`);
+                    // Update UI, e.g., refresh transaction history
+                } else {
+                    alert(result.error || 'Deposit failed.');
+                }
+            } catch (error) {
+                console.error('Deposit error:', error);
+                alert('Error processing deposit.');
+            }
+        });
+
+        console.log("SecureCrypto Dashboard initialized.");
+    </script>
+</body>
+</html>
