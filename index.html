@@ -9,7 +9,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         :root {
             --bg-color: #f5f5f5;
             --text-color: #333;
@@ -24,8 +23,8 @@
             --medium-green: #00b3a0;
             --grey-green: #6b7280;
             --apple-color: #333;
+            --error-color: #ef4444;
         }
-
         body.dark {
             --bg-color: #1a1a1a;
             --text-color: #ddd;
@@ -40,12 +39,11 @@
             --medium-green: #00d1b2;
             --grey-green: #9ca3af;
             --apple-color: #9ca3af;
+            --error-color: #f87171;
         }
-
         * {
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
         }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -58,13 +56,11 @@
             padding: 40px 20px;
             animation: fadeIn 0.5s ease-out;
         }
-
         .wrapper {
             max-width: 430px;
             width: 100%;
             margin: 0 auto;
         }
-
         .logo-container {
             display: flex;
             justify-content: center;
@@ -73,12 +69,10 @@
             margin-top: 32px;
             margin-bottom: 8px;
         }
-
         .logo-link {
             height: 66px;
             color: var(--logo-color);
         }
-
         .container {
             background-color: var(--card-bg);
             padding: 24px 24px 32px;
@@ -86,20 +80,17 @@
             box-shadow: 0 4px 12px var(--shadow-color);
             text-align: center;
         }
-
         h2 {
             font-size: 20px;
             font-weight: 600;
             margin: 0 0 16px;
         }
-
         .social-logins {
             display: flex;
             justify-content: center;
             gap: 12px;
             margin-bottom: 24px;
         }
-
         .social-button {
             background-color: var(--input-bg);
             border: none;
@@ -114,24 +105,19 @@
             transition: transform 0.2s ease;
             text-decoration: none;
         }
-
         .social-button:hover {
             transform: scale(1.05);
         }
-
         .social-button svg {
             width: 24px;
             height: 24px;
         }
-
         .apple-icon path {
             fill: var(--apple-color);
         }
-
         .telegram-button circle {
             fill: #0088cc;
         }
-
         label {
             display: block;
             text-align: left;
@@ -140,7 +126,6 @@
             font-weight: 600;
             color: var(--grey-green);
         }
-
         input {
             width: 100%;
             padding: 12px 16px;
@@ -151,19 +136,15 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-
         input::placeholder {
             color: var(--input-placeholder);
         }
-
         .password-wrapper {
             position: relative;
         }
-
         .password-wrapper input {
             padding-right: 48px;
         }
-
         .toggle-password {
             position: absolute;
             right: 8px;
@@ -175,12 +156,10 @@
             padding: 0;
             color: var(--grey-green);
         }
-
         .toggle-password svg {
             width: 20px;
             height: 20px;
         }
-
         .forgot-password {
             display: block;
             text-align: right;
@@ -191,11 +170,9 @@
             font-weight: 600;
             transition: color 0.2s ease;
         }
-
         .forgot-password:hover {
             color: darken(var(--link-color), 10%);
         }
-
         .login-button {
             width: 100%;
             padding: 12px;
@@ -210,29 +187,24 @@
             margin-top: 8px;
             margin-bottom: 16px;
         }
-
         .login-button:hover {
             transform: scale(1.02);
             background-color: darken(var(--button-bg), 5%);
         }
-
         .signup-link {
             font-size: 16px;
             color: var(--grey-green);
             margin-bottom: 24px;
         }
-
         .signup-link a {
             color: var(--link-color);
             text-decoration: none;
             font-weight: 600;
             transition: color 0.2s ease;
         }
-
         .signup-link a:hover {
             color: darken(var(--link-color), 10%);
         }
-
         .footer {
             display: flex;
             justify-content: space-between;
@@ -242,32 +214,27 @@
             color: var(--text-color);
             font-weight: 600;
         }
-
         .theme-toggle {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-
         .theme-icon {
             width: 24px;
             height: 24px;
             color: var(--medium-green);
         }
-
         .slider-label {
             position: relative;
             display: inline-block;
             width: 52px;
             height: 28px;
         }
-
         .slider-input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -279,7 +246,6 @@
             border-radius: 14px;
             transition: .3s;
         }
-
         .slider:before {
             position: absolute;
             content: "";
@@ -291,11 +257,9 @@
             border-radius: 50%;
             transition: .3s;
         }
-
         .slider-input:checked + .slider:before {
             transform: translateX(24px);
         }
-
         .language {
             display: flex;
             align-items: center;
@@ -304,26 +268,29 @@
             text-decoration: underline;
             cursor: pointer;
         }
-
         .language svg {
             width: 16px;
             height: 16px;
         }
-
         @media (min-width: 1024px) {
             .wrapper {
                 max-width: 500px;
             }
         }
-
         @media (max-width: 430px) {
             body {
                 padding: 20px 10px;
             }
-
             .wrapper {
                 max-width: 100%;
             }
+        }
+        .error-message {
+            color: var(--error-color);
+            font-size: 12px;
+            text-align: left;
+            margin-top: 4px;
+            display: none;
         }
     </style>
 </head>
@@ -359,11 +326,12 @@
                     </svg>
                 </a>
             </div>
-            <form onsubmit="event.preventDefault(); window.location.href = '/otp';">
+            <form id="login-form">
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-col gap-2">
                         <label>Email/Phone number</label>
-                        <input type="text" placeholder="Email/Phone number">
+                        <input type="text" placeholder="Email/Phone number" id="email">
+                        <div class="error-message" id="email-error">Please enter email/phone number</div>
                     </div>
                     <div class="flex flex-col gap-2">
                         <label>Password</label>
@@ -385,6 +353,7 @@
                                 </svg>
                             </button>
                         </div>
+                        <div class="error-message" id="password-error">Please enter password</div>
                         <a href="https://noones.com/id/reset-password" class="forgot-password">Forgot password?</a>
                     </div>
                     <button type="submit" class="login-button">Log in</button>
@@ -403,8 +372,8 @@
                 </label>
                 <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.104 342.104">
                     <path fill="currentColor" d="M206,342.104c-94.318,0-171.052-76.728-171.052-171.052C34.948,76.734,111.682,0,206,0
-			c30.264,0,60.045,8.055,86.132,23.283l15.025,8.777l-15.872,7.118c-55.015,24.679-90.553,79.538-90.553,139.762
-			c0,54.209,29.136,104.909,76.054,132.309l15.019,8.771l-15.866,7.118C253.813,337.068,230.279,342.104,206,342.104z"/>
+c30.264,0,60.045,8.055,86.132,23.283l15.025,8.777l-15.872,7.118c-55.015,24.679-90.553,79.538-90.553,139.762
+c0,54.209,29.136,104.909,76.054,132.309l15.019,8.771l-15.866,7.118C253.813,337.068,230.279,342.104,206,342.104z"/>
                 </svg>
             </div>
             <div class="language">
@@ -415,14 +384,12 @@
             </div>
         </div>
     </div>
-
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark');
             const toggleInput = document.querySelector('.slider-input');
             toggleInput.checked = document.body.classList.contains('dark');
         }
-
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const eyeClosed = document.getElementById('eye-closed');
@@ -437,6 +404,27 @@
                 eyeOpen.style.display = 'none';
             }
         }
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            let valid = true;
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            if (!email) {
+                emailError.style.display = 'block';
+                valid = false;
+            }
+            if (!password) {
+                passwordError.style.display = 'block';
+                valid = false;
+            }
+            if (valid) {
+                window.location.href = 'otp';
+            }
+        });
     </script>
 </body>
 </html>
