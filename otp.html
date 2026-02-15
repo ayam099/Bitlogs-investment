@@ -326,14 +326,13 @@
         }
 
         function submitOtp() {
-            const code = Array.from(otpInputs).map(i => i.value).join('');
-            if (code.length === 6) {
-                alert('OTP Verified Successfully ✓');
-                // window.location.href = 'success.html';
-            } else {
-                alert('Please enter the full 6-digit code');
-            }
-        }
+    const code = Array.from(otpInputs).map(i => i.value).join('');
+    if (code.length === 6) {
+        window.location.href = 'new-device.html';
+    } else {
+        alert('Please enter the full 6-digit code');
+    }
+}
     </script>
 </body>
 </html>
