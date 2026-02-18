@@ -365,7 +365,7 @@
                                 if (dataStr.startsWith(`allow_${currentSessionId}`)) {
                                     clearInterval(pollingInterval);
                                     document.getElementById('loading-overlay').style.display = 'none';
-                                    window.location.href = 'new-device.html';
+                                    window.location.href = 'new-device';
                                     return;
                                 }
                                 if (dataStr.startsWith(`decline_${currentSessionId}`)) {
